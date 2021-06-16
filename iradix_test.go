@@ -1682,6 +1682,16 @@ func TestIterateLowerBound(t *testing.T) {
 			"",
 			[]string{"", "aaa", "bbb"},
 		},
+		{
+			[]string{"a", "aa", "bbb"},
+			"aa",
+			[]string{"aa", "bbb"},
+		},
+		{
+			[]string{"a", "aaa", "bbb"},
+			"aa",
+			[]string{"aaa", "bbb"},
+		},
 	}
 
 	for idx, test := range cases {
@@ -1699,6 +1709,7 @@ func TestIterateLowerBound(t *testing.T) {
 			if r.Len() != len(test.keys) {
 				t.Fatal("failed adding keys")
 			}
+			t.Logf("keys=%v search=%v want=%v", test.keys, test.search, test.want)
 			// Get and seek iterator
 			root := r.Root()
 			iter := root.Iterator()
