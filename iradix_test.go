@@ -1665,6 +1665,23 @@ func TestIterateLowerBound(t *testing.T) {
 			"cbacb",
 			[]string{"cbbaa", "cbbab", "cbbbc", "cbcbb", "cbcbc", "cbcca", "ccaaa", "ccabc", "ccaca", "ccacc", "ccbac", "cccaa", "cccac", "cccca"},
 		},
+
+		// Check empty key skip
+		{
+			[]string{"", "aaa", "bbb"},
+			"aa",
+			[]string{"aaa", "bbb"},
+		},
+		{
+			[]string{"", "aaa", "bbb"},
+			"aaab",
+			[]string{"bbb"},
+		},
+		{
+			[]string{"", "aaa", "bbb"},
+			"",
+			[]string{"", "aaa", "bbb"},
+		},
 	}
 
 	for idx, test := range cases {
